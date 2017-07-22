@@ -7,6 +7,7 @@ const logger         = require("morgan");
 const cookieParser   = require("cookie-parser");
 const bodyParser     = require("body-parser");
 const mongoose       = require("mongoose");
+require("dotenv").config();
 const app            = express();
 
 // Controllers
@@ -14,7 +15,9 @@ const siteController     = require("./routes/siteController");
 const locationController = require("./routes/locationController");
 
 // Mongoose configuration
-mongoose.connect("mongodb://localhost/deploy-exercise");
+//mongoose.connect("mongodb://localhost/deploy-exercise");
+//mongoose.connect("mongodb://heroku_fk0w84c9:m7gl1gtisatgt0j2jtafuq9qme@ds115493.mlab.com:15493/heroku_fk0w84c9");
+mongoose.connect(process.env.MONGODB_URI);
 
 // Middlewares configuration
 app.use(logger("dev"));
